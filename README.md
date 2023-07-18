@@ -1,2 +1,3 @@
-# Pink Candy
-An Exiled plugin that allows you to choose the % chance of getting a pink candy
+# Pink Candy (EXILED)
+- Choose chance of getting pink candy
+- Have text shown when you pickup candy
