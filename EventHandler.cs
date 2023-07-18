@@ -10,6 +10,7 @@ namespace CandyUtilities.Events
         Random random = new Random();
         public void OnInteraction(InteractingScp330EventArgs ev)
         {
+            if(!ev.IsAllowed) return;
             if (random.Next(1, 101) <= config.PinkChance)
             {
                 Log.Debug("Pink candy has been selected!");
