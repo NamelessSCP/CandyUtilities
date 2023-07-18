@@ -1,2 +1,3 @@
-# Pink Candy
-An Exiled plugin that allows you to choose the % chance of getting a pink candy
+# Candy Utilities (EXILED) ![Downloads](https://img.shields.io/github/downloads/Misfiy/CandyUtilities/total)
+- Choose chance of getting pink candy
+- Have text shown when you pickup candy
