@@ -3,7 +3,7 @@ namespace CandyUtilities.Events;
 using CandyUtilities;
 using Exiled.Events.EventArgs.Scp330;
 using InventorySystem.Items.Usables.Scp330;
-using Exiled.API.Features
+using Exiled.API.Features;
 
 public sealed class EventHandler
 {
