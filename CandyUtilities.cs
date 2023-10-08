@@ -1,23 +1,23 @@
 ﻿namespace CandyUtilities;
 
 using Exiled.API.Features;
-using Exiled.API.Enums;
 using CandyUtilities.Events;
 using Scp330 = Exiled.Events.Handlers.Scp330;
 
-public class CandyUtil : Plugin<Config>
+public class CandyUtil : Plugin<Config, Translation>
 {
      public override string Name => "Candy Utilities";
      public override string Prefix => "CandyUtils";
      public override string Author => "@misfiy";
-     public override PluginPriority Priority => PluginPriority.Default;
-     private EventHandler eventHandler;
+	public override Version Version => new(1, 0, 4);
+	public override Version RequiredExiledVersion => new(8, 2, 1);
+
      public static CandyUtil Instance;
-     private Config config;
+
+	private EventHandler eventHandler;
      public override void OnEnabled()
      {
           Instance = this;
-          config = Instance.Config;
 
           RegisterEvents();
           base.OnEnabled();
@@ -26,7 +26,7 @@ public class CandyUtil : Plugin<Config>
      public override void OnDisabled()
      {
           UnregisterEvents();
-          Instance = null;
+          Instance = null!;
           base.OnDisabled();
      }
      public void RegisterEvents()
@@ -39,6 +39,6 @@ public class CandyUtil : Plugin<Config>
      public void UnregisterEvents()
      {
           Scp330.InteractingScp330 -= eventHandler.OnInteraction;
-          eventHandler = null;
+          eventHandler = null!;
      }
 }

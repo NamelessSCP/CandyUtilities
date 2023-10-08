@@ -5,10 +5,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>10.0</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EXILED" Version="7.2.0" />
+    <PackageReference Include="EXILED" Version="8.2.1" />
     <PackageReference Include="Lib.Harmony" Version="2.2.2" />
     <PackageReference Include="UnityEngine.Modules" Version="2019.4.15" IncludeAssets="compile" />
   </ItemGroup>
