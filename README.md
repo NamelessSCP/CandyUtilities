@@ -5,6 +5,7 @@
 - Have text shown when hands are severed
 
 # NWAPI
+- This requires harmony, which can be found with the plugin
 - The NWAPI version should only be used if you are not using EXILED at all. The Exiled version is way better. Please. Just use it. I beg.
 
 # Support
