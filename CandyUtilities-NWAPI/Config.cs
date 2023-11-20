@@ -11,7 +11,7 @@ public sealed class Config
     public int GlobalSeverLimit { get; set; } = 2;
     public Dictionary<RoleTypeId, int> RoleSeverCounts { get; set; } = new()
     {
-        { RoleTypeId.Tutorial, 4 }
+        { RoleTypeId.Tutorial, 3 }
     };
     [Description("Translations:")]
     public string PickupText { get; set; } = "You take a piece of %type% candy.";
@@ -24,12 +24,6 @@ public sealed class Config
         { CandyKindID.Green, "<color=#008000>Green</color>" },
         { CandyKindID.Blue, "<color=#0000FF>Blue</color>" },
         { CandyKindID.Pink, "<color=#FFC0CB>Pink</color>" },
-        { CandyKindID.Orange, "<color=#ffa500>Orange</color>"},
-        { CandyKindID.White, "<color=#ffffff>White</color>" },
-        { CandyKindID.Gray, "<color=#808080>Gray</color>" },
-        { CandyKindID.Black, "<color=#000000>Black</color>" },
-        { CandyKindID.Brown, "<color=#644117>Brown</color>" },
-        { CandyKindID.Evil, "Evil" }
     };
     public string SeveredText { get; set; } = "Hippity hoppity, your hands are now my property";
 }

@@ -5,7 +5,6 @@ namespace CandyUtilities_NWAPI;
 using PluginAPI.Core.Attributes;
 using HarmonyLib;
 
-
 public class CandyUtils
 {
     private Harmony harmony { get; set; } = new("CandyUtilities");
@@ -15,12 +14,12 @@ public class CandyUtils
     [PluginConfig]
     public Config Config;
 
-    [PluginEntryPoint("CandyUtilities", "1.0.0", "Candy Utilities", "@misfiy")]
+    [PluginEntryPoint("CandyUtilities", "1.0.7", "Candy Utilities", "@misfiy")]
     void LoadPlugin()
     {
-        Instance = this;
         if (!Config.IsEnabled)
             return;
+        Instance = this;
         harmony.PatchAll();
     }
 }

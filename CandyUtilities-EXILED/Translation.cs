@@ -18,12 +18,6 @@ public sealed class Translation : ITranslation
         { CandyKindID.Green, "<color=#008000>Green</color>" },
         { CandyKindID.Blue, "<color=#0000FF>Blue</color>" },
         { CandyKindID.Pink, "<color=#FFC0CB>Pink</color>" },
-        { CandyKindID.Orange, "<color=#ffa500>Orange</color>"},
-        { CandyKindID.White, "<color=#ffffff>White</color>" },
-        { CandyKindID.Gray, "<color=#808080>Gray</color>" },
-        { CandyKindID.Black, "<color=#000000>Black</color>" },
-        { CandyKindID.Brown, "<color=#644117>Brown</color>" },
-        { CandyKindID.Evil, "Evil" }
     };
     [Description("Text to be shown when hands are being severed")] 
     public string SeveredText { get; set; } = "Hippity hoppity, your hands are now my property";

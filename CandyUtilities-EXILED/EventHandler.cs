@@ -5,11 +5,21 @@ using InventorySystem.Items.Usables.Scp330;
 using Exiled.API.Features;
 using UnityEngine;
 
-public sealed class EventHandler
+public class EventHandler
 {
     private static Config config => CandyUtil.Instance.Config;
     private static Translation translation => CandyUtil.Instance.Translation;
-	
+    
+    public EventHandler()
+    {
+        Exiled.Events.Handlers.Scp330.InteractingScp330 += OnInteraction;
+    }
+
+    ~EventHandler()
+    {
+        Exiled.Events.Handlers.Scp330.InteractingScp330 -= OnInteraction;
+    }
+    
     public void OnInteraction(InteractingScp330EventArgs ev)
     {
         if (!ev.IsAllowed) return;
@@ -39,21 +49,5 @@ public sealed class EventHandler
         {
             ev.Player.ShowHint(pickupText, 4);
         }
-        // if (ev.ShouldSever && !translation.SeveredText.IsEmpty())
-        // {
-        // 	ev.Player.ShowHint(translation.SeveredText, 4);
-        // 	Log.Debug($"Severed hands text shown to {ev.Player.DisplayNickname}");
-        // }
-        // else if (!translation.PickupText.IsEmpty())
-        // {
-        // if (!translation.CandyText.TryGetValue(ev.Candy, out string candy))
-        // {
-        // 	Log.Warn($"No candy text found for {ev.Candy}! No text will be shown.");
-        // 	return;
-        // }
-        // 	string text = translation.PickupText.Replace("%type%", translation.CandyText[ev.Candy]);
-        // 	ev.Player.ShowHint(text, 4);
-        // 	Log.Debug("Candy pickup text shown!");
-        // }
     }
 }
