@@ -6,7 +6,6 @@
 
 # NWAPI
 - This requires 0harmony, which can be found together with the plugin. This must be put into your dependencies folder.
-- The NWAPI version should only be used if you are not using EXILED at all. The Exiled version is way better. Please. Just use it. I beg.
 
 # Support
 * For any issues create an issue or contact me on [Discord](https://discord.gg/RYzahv3vfC).
