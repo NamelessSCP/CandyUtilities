@@ -1,11 +1,11 @@
-# Candy Utilities (EXILED + NWAPI) ![Downloads](https://img.shields.io/github/downloads/Misfiy/CandyUtilities/total)
+# Candy Utilities ![Downloads](https://img.shields.io/github/downloads/Misfiy/CandyUtilities/total)
+* Candy Utilities is a plugin that grants server owners more control over SCP-330
+
+# Features
 - Choose chance of getting pink candy
 - Choose how many candies specific roles are able to take and even global limits
 - Have text shown when you pickup candy
 - Have text shown when hands are severed
-
-# NWAPI
-- This requires 0harmony, which can be found together with the plugin. This must be put into your dependencies folder.
 
 # Support
 * For any issues create an issue or contact me on [Discord](https://discord.gg/RYzahv3vfC).
