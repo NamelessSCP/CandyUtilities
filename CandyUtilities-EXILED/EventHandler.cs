@@ -29,11 +29,10 @@ public class EventHandler
             ev.Candy = CandyKindID.Pink;
             Log.Debug("Pink candy has been selected!");
         }
-		
-        string? severText = translation.SeveredText.IsEmpty() ? null : translation.SeveredText;
-        string? pickupText = translation.CandyText.TryGetValue(ev.Candy, out string? candy) 
+        
+        string pickupText = translation.CandyText.TryGetValue(ev.Candy, out string? candy)
             ? translation.PickupText.Replace("%type%", candy)
-            : null;
+            : string.Empty;
         int maxCandies = config.SeverCounts.TryGetValue(ev.Player.Role.Type, out int count)
             ? count
             : config.GlobalSeverLimit;
@@ -41,13 +40,9 @@ public class EventHandler
         ev.ShouldSever = ev.UsageCount >= maxCandies;
         Log.Debug($"Usage ({ev.UsageCount}/{maxCandies}) - ShouldSever ({ev.ShouldSever})");
 		
-        if (ev.ShouldSever && !severText.IsEmpty())
-        {
-            ev.Player.ShowHint(severText, 4);
-        }
+        if (ev.ShouldSever && !translation.SeveredText.IsEmpty())
+            ev.Player.ShowHint(translation.SeveredText, 4);
         else if (!pickupText.IsEmpty())
-        {
             ev.Player.ShowHint(pickupText, 4);
-        }
     }
 }
