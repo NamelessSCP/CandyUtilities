@@ -8,5 +8,5 @@
 - Have text shown when hands are severed
 
 # Support
-* For any issues create an issue or contact me on [Discord](https://discord.gg/RYzahv3vfC).
+* For any issues create an [Issue](https://github.com/Misfiy/CandyUtilities/issues/new) or contact me on [Discord](https://discord.gg/RYzahv3vfC).
 * Also use the Discord for suggestions :)
