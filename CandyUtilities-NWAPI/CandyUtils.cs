@@ -7,19 +7,22 @@ using HarmonyLib;
 
 public class CandyUtils
 {
-    private Harmony harmony { get; set; } = new("CandyUtilities");
+    private Harmony harmony;
     
     public static CandyUtils Instance { get; private set; }
     
     [PluginConfig]
     public Config Config;
 
-    [PluginEntryPoint("CandyUtilities", "1.0.7", "Candy Utilities", "@misfiy")]
+    [PluginEntryPoint("CandyUtilities", "1.0.8", "Candy Utilities", "@namelessmisfiy")]
     void LoadPlugin()
     {
         if (!Config.IsEnabled)
             return;
+
         Instance = this;
+
+        harmony = new("Misfiy.CandyUtilities" + DateTime.Now);
         harmony.PatchAll();
     }
 }

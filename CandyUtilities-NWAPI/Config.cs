@@ -4,7 +4,7 @@ using System.ComponentModel;
 using InventorySystem.Items.Usables.Scp330;
 using PlayerRoles;
 
-public sealed class Config
+public class Config
 {
     public bool IsEnabled { get; set; } = true;
     public ushort PinkChance { get; set; } = 3;
@@ -13,6 +13,7 @@ public sealed class Config
     {
         { RoleTypeId.Tutorial, 3 }
     };
+
     [Description("Translations:")]
     public string PickupText { get; set; } = "You take a piece of %type% candy.";
     public Dictionary<CandyKindID, string> CandyText { get; set; } = new()

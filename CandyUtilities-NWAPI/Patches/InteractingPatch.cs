@@ -17,6 +17,7 @@ internal static class InteractingPatch
     {
         if (!ply.IsHuman() || ply.HasBlock(BlockedInteraction.GrabItems))
             return false;
+
         Footprint footprint = new(ply);
         float num = 0.1f;
         int num2 = 0;

@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Lib.Harmony" Version="2.3.0-prerelease.2" />
+      <PackageReference Include="Lib.Harmony" Version="2.2.2" />
       <PackageReference Include="Northwood.PluginAPI" Version="13.1.1" />
     </ItemGroup>
 

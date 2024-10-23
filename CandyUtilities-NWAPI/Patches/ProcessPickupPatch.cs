@@ -19,7 +19,7 @@ internal static class ProcessPickupPatch
 
         bool res = false;
         
-        if(pickup == null)
+        if (pickup == null)
         {
             CandyKindID candy = Scp330Candies.GetRandom();
             if (Random.Range(0, 100) <= CandyUtils.Instance.Config.PinkChance) 
@@ -40,7 +40,7 @@ internal static class ProcessPickupPatch
                 pickup.StoredCandies.RemoveAt(0);
             }
         }
-        if(bag.AcquisitionAlreadyReceived)
+        if (bag.AcquisitionAlreadyReceived)
             bag.ServerRefreshBag();
 
         __result = res;
