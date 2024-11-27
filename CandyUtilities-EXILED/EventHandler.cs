@@ -22,7 +22,8 @@ public class EventHandler
     
     public void OnInteraction(InteractingScp330EventArgs ev)
     {
-        if (!ev.IsAllowed) return;
+        if (!ev.IsAllowed)
+            return;
 
         if (Random.Range(1, 100) <= config.PinkChance)
         {
@@ -33,6 +34,7 @@ public class EventHandler
         string pickupText = translation.CandyText.TryGetValue(ev.Candy, out string? candy)
             ? translation.PickupText.Replace("%type%", candy)
             : string.Empty;
+
         int maxCandies = config.SeverCounts.TryGetValue(ev.Player.Role.Type, out int count)
             ? count
             : config.GlobalSeverLimit;

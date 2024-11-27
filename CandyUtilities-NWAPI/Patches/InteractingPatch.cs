@@ -35,14 +35,14 @@ internal static class InteractingPatch
 
         if (!Scp330Bag.ServerProcessPickup(ply, null, out Scp330Bag _))
             return false;
-        
+
         PlayerInteractScp330Event ev = new PlayerInteractScp330Event(ply, prevUses);
         if (!EventManager.ExecuteEvent(ev))
             return false;
-        
+
         if (ev.PlaySound)
             __instance.RpcMakeSound();
-        
+
         if (!CandyUtils.Instance.Config.RoleSeverCounts.TryGetValue(ply.GetRoleId(), out int maxUses))
             maxUses = CandyUtils.Instance.Config.GlobalSeverLimit;
 
@@ -50,7 +50,7 @@ internal static class InteractingPatch
         {
             if(!CandyUtils.Instance.Config.SeveredText.IsEmpty())
                 Player.Get(ply).ReceiveHint(CandyUtils.Instance.Config.SeveredText);
-            
+
             ply.playerEffectsController.EnableEffect<SeveredHands>();
             __instance.ClearUsesForRole(ply.roleManager.CurrentRole);
         }
