@@ -1,4 +1,6 @@
-﻿namespace CandyUtilities_NWAPI.Patches;
+﻿using InventorySystem.Items;
+
+namespace CandyUtilities_NWAPI.Patches;
 
 using InventorySystem.Items.Usables.Scp330;
 using InventorySystem;
@@ -13,7 +15,7 @@ internal static class ProcessPickupPatch
         if (!Scp330Bag.TryGetBag(ply, out bag))
         {
             int num = pickup == null ? 0 : pickup.Info.Serial;
-            __result = ply.inventory.ServerAddItem(ItemType.SCP330, (ushort)num, pickup) != null;
+            __result = ply.inventory.ServerAddItem(ItemType.SCP330, ItemAddReason.Scp914Upgrade, (ushort)num, pickup) != null;
             return false;
         }
 

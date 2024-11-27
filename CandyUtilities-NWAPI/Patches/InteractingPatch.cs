@@ -18,44 +18,44 @@ internal static class InteractingPatch
         if (!ply.IsHuman() || ply.HasBlock(BlockedInteraction.GrabItems))
             return false;
 
-        Footprint footprint = new(ply);
-        float num = 0.1f;
-        int num2 = 0;
-        foreach (Footprint foot in __instance._takenCandies)
+        float lastTaken = Scp330Interobject.TakeCooldown;
+        int prevUses = 0;
+        foreach (Footprint previousUse in __instance._previousUses)
         {
-            if (foot.SameLife(footprint))
-            {
-                num = Mathf.Min(num, (float)foot.Stopwatch.Elapsed.TotalSeconds);
-                num2++;
-            }
+            if (previousUse.LifeIdentifier != ply.roleManager.CurrentRole.UniqueLifeIdentifier)
+                continue;
+            
+            double totalSeconds = previousUse.Stopwatch.Elapsed.TotalSeconds;
+            lastTaken = Mathf.Min(lastTaken, (float) totalSeconds);
+            ++prevUses;
         }
 
-        if (num < 0.1f)
+        if (lastTaken < Scp330Interobject.TakeCooldown)
+            return false;
+
+        if (!Scp330Bag.ServerProcessPickup(ply, null, out Scp330Bag _))
             return false;
         
-        if (Scp330Bag.ServerProcessPickup(ply, null, out Scp330Bag bag))
-        {
-            PlayerInteractScp330Event playerInteractScp330Event = new PlayerInteractScp330Event(ply, num2);
-            if (!EventManager.ExecuteEvent(playerInteractScp330Event))
-                return false;
-            
-            if (playerInteractScp330Event.PlaySound)
-                __instance.RpcMakeSound();
-            if (!CandyUtils.Instance.Config.RoleSeverCounts.TryGetValue(ply.GetRoleId(), out int maxUses))
-                maxUses = CandyUtils.Instance.Config.GlobalSeverLimit;
-            
-            if (playerInteractScp330Event.AllowPunishment && playerInteractScp330Event.Uses >= maxUses)
-            {
-                if(!CandyUtils.Instance.Config.SeveredText.IsEmpty())
-                    Player.Get(ply).ReceiveHint(CandyUtils.Instance.Config.SeveredText);
-                
-                ply.playerEffectsController.EnableEffect<SeveredHands>();
-                while (__instance._takenCandies.Remove(footprint)) {}
+        PlayerInteractScp330Event ev = new PlayerInteractScp330Event(ply, prevUses);
+        if (!EventManager.ExecuteEvent(ev))
+            return false;
+        
+        if (ev.PlaySound)
+            __instance.RpcMakeSound();
+        
+        if (!CandyUtils.Instance.Config.RoleSeverCounts.TryGetValue(ply.GetRoleId(), out int maxUses))
+            maxUses = CandyUtils.Instance.Config.GlobalSeverLimit;
 
-                return false;
-            }
-            __instance._takenCandies.Add(footprint);
+        if (ev.AllowPunishment && ev.Uses >= maxUses)
+        {
+            if(!CandyUtils.Instance.Config.SeveredText.IsEmpty())
+                Player.Get(ply).ReceiveHint(CandyUtils.Instance.Config.SeveredText);
+            
+            ply.playerEffectsController.EnableEffect<SeveredHands>();
+            __instance.ClearUsesForRole(ply.roleManager.CurrentRole);
         }
+        else
+            __instance._previousUses.Add(new Footprint(ply));
 
         return false;
     }
