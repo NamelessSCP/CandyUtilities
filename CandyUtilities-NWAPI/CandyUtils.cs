@@ -14,7 +14,7 @@ public class CandyUtils
     [PluginConfig]
     public Config Config;
 
-    [PluginEntryPoint("CandyUtilities", "1.0.9", "Candy Utilities", "@namelessmisfiy")]
+    [PluginEntryPoint("CandyUtilities", "1.0.10", "Candy Utilities", "@misfiy")]
     void LoadPlugin()
     {
         if (!Config.IsEnabled)

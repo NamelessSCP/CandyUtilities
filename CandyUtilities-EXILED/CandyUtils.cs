@@ -7,8 +7,8 @@ public class CandyUtil : Plugin<Config, Translation>
     public override string Name => "Candy Utilities";
     public override string Prefix => "CandyUtils";
     public override string Author => "@misfiy";
-    public override Version Version => new(1, 0, 9);
-    public override Version RequiredExiledVersion => new(8, 4, 1);
+    public override Version Version => new(1, 0, 10);
+    public override Version RequiredExiledVersion => new(9, 0, 0);
 
     public static CandyUtil Instance { get; private set; } = null!;
 
