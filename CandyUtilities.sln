@@ -1,22 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyUtilities-EXILED", "CandyUtilities-EXILED\CandyUtilities-EXILED.csproj", "{13C0FB6F-BE2D-4094-82CD-C3F3DDD6BC09}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyUtilities-NWAPI", "CandyUtilities-NWAPI\CandyUtilities-NWAPI.csproj", "{B1ADB927-042F-41CE-92CF-C07194FF8CA1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyUtilities", "CandyUtilities\CandyUtilities.csproj", "{13C0FB6F-BE2D-4094-82CD-C3F3DDD6BC09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		LabApi|Any CPU = LabApi|Any CPU
+		Exiled|Any CPU = Exiled|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{13C0FB6F-BE2D-4094-82CD-C3F3DDD6BC09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13C0FB6F-BE2D-4094-82CD-C3F3DDD6BC09}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13C0FB6F-BE2D-4094-82CD-C3F3DDD6BC09}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13C0FB6F-BE2D-4094-82CD-C3F3DDD6BC09}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B1ADB927-042F-41CE-92CF-C07194FF8CA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B1ADB927-042F-41CE-92CF-C07194FF8CA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B1ADB927-042F-41CE-92CF-C07194FF8CA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B1ADB927-042F-41CE-92CF-C07194FF8CA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13C0FB6F-BE2D-4094-82CD-C3F3DDD6BC09}.LabApi|Any CPU.ActiveCfg = LabApi|Any CPU
+		{13C0FB6F-BE2D-4094-82CD-C3F3DDD6BC09}.LabApi|Any CPU.Build.0 = LabApi|Any CPU
+		{13C0FB6F-BE2D-4094-82CD-C3F3DDD6BC09}.Exiled|Any CPU.ActiveCfg = Exiled|Any CPU
+		{13C0FB6F-BE2D-4094-82CD-C3F3DDD6BC09}.Exiled|Any CPU.Build.0 = Exiled|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,10 +1,18 @@
-﻿namespace CandyUtilities_EXILED;
+﻿namespace CandyUtilities;
 
+#if EXILED
 using Exiled.API.Interfaces;
+#endif
+
 using InventorySystem.Items.Usables.Scp330;
 using System.ComponentModel;
 
+#if LABAPI
+public sealed class Translation
+#endif
+#if EXILED
 public sealed class Translation : ITranslation
+#endif
 {
     [Description("The text shown when picking up a candy, note %type% gets replaced with the type of candy")]
     public string PickupText { get; set; } = "You take a piece of %type% candy.";

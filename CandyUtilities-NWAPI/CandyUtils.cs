@@ -21,7 +21,6 @@ public class CandyUtils
             return;
 
         Instance = this;
-
         harmony = new("Misfiy.CandyUtilities" + DateTime.Now);
         harmony.PatchAll();
     }

@@ -1,10 +1,18 @@
-﻿namespace CandyUtilities_EXILED;
+﻿namespace CandyUtilities;
 
+#if EXILED
 using Exiled.API.Interfaces;
+#endif
+
 using PlayerRoles;
 using System.ComponentModel;
 
+#if LABAPI
+public sealed class Config
+#endif
+#if EXILED
 public sealed class Config : IConfig
+#endif
 {
     public bool IsEnabled { get; set; } = true;
     public bool Debug { get; set; } = false;

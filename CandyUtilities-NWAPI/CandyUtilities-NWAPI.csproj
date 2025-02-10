@@ -7,6 +7,8 @@
         <Nullable>enable</Nullable>
         <LangVersion>10</LangVersion>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Configurations>LabApi;Exiled</Configurations>
+        <Platforms>AnyCPU</Platforms>
     </PropertyGroup>
 
     <ItemGroup>

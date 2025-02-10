@@ -48,7 +48,7 @@ internal static class InteractingPatch
 
         if (ev.AllowPunishment && ev.Uses >= maxUses)
         {
-            if(!CandyUtils.Instance.Config.SeveredText.IsEmpty())
+            if(!string.IsNullOrEmpty(CandyUtils.Instance.Config.SeveredText))
                 Player.Get(ply).ReceiveHint(CandyUtils.Instance.Config.SeveredText);
 
             ply.playerEffectsController.EnableEffect<SeveredHands>();
