@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+        <RootNamespace>CandyUtilities</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>10</LangVersion>
+        <Configurations>Exiled;LabApi</Configurations>
+        <Platforms>AnyCPU</Platforms>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <Reference Include="UnityEngine" HintPath="$(SECRETLAB_REFERENCES)\UnityEngine.dll" />
+        <Reference Include="UnityEngine.CoreModule" HintPath="$(SECRETLAB_REFERENCES)\UnityEngine.CoreModule.dll" />
+        <Reference Include="Mirror" HintPath="$(SECRETLAB_REFERENCES)\Mirror.dll" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(Configuration)' == 'LabApi' ">
+        <Reference Include="LabApi" HintPath="$(SECRETLAB_REFERENCES)\LabApi.dll" />
+        <Reference Include="Assembly-CSharp-Publicized" HintPath="$(SECRETLAB_REFERENCES)\Assembly-CSharp-Publicized.dll" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(Configuration)' == 'Exiled' ">
+        <PackageReference Include="ExMod.Exiled" Version="9.5.0" />
+    </ItemGroup>
+
+</Project>
