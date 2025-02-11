@@ -9,8 +9,7 @@ using System.ComponentModel;
 
 #if LABAPI
 public sealed class Translation
-#endif
-#if EXILED
+#else
 public sealed class Translation : ITranslation
 #endif
 {

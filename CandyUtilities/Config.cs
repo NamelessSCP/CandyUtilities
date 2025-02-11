@@ -9,8 +9,7 @@ using System.ComponentModel;
 
 #if LABAPI
 public sealed class Config
-#endif
-#if EXILED
+#else
 public sealed class Config : IConfig
 #endif
 {

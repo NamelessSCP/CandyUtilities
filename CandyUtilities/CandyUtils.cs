@@ -1,18 +1,15 @@
 ﻿namespace CandyUtilities;
 
-#if EXILED
+#if LABAPI
+using LabApi.Loader.Features.Plugins;
+using LabApi.Loader;
+#else
 using Exiled.API.Features;
 #endif
 
 #if LABAPI
-using LabApi.Loader.Features.Plugins;
-using LabApi.Loader;
-#endif
-
-#if LABAPI
 public class CandyUtil : Plugin
-#endif
-#if EXILED
+#else
 public class CandyUtil : Plugin<Config, Translation>
 #endif
 {
@@ -36,8 +33,7 @@ public class CandyUtil : Plugin<Config, Translation>
 
 #if LABAPI
     public override void Enable()
-#endif
-#if EXILED
+#else
     public override void OnEnabled()
 #endif
     {
@@ -61,8 +57,7 @@ public class CandyUtil : Plugin<Config, Translation>
 
 #if LABAPI
     public override void Disable()
-#endif
-#if EXILED
+#else
     public override void OnDisabled()
 #endif
     {

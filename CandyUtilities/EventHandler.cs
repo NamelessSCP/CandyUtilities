@@ -3,8 +3,7 @@
 #if LABAPI
 using LabApi.Events.Arguments.PlayerEvents;
 using LabApi.Features.Wrappers;
-#endif
-#if EXILED
+#else
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Scp330;
 #endif
@@ -21,8 +20,7 @@ public class EventHandler
     {
 #if LABAPI
         LabApi.Events.Handlers.PlayerEvents.InteractingScp330 += OnInteraction;
-#endif
-#if EXILED
+#else
         Exiled.Events.Handlers.Scp330.InteractingScp330 += OnInteraction;
 #endif
     }
@@ -31,16 +29,14 @@ public class EventHandler
     {
 #if LABAPI
         LabApi.Events.Handlers.PlayerEvents.InteractingScp330 -= OnInteraction;
-#endif
-#if EXILED
+#else
         Exiled.Events.Handlers.Scp330.InteractingScp330 -= OnInteraction;
 #endif
     }
     
 #if LABAPI
     private void OnInteraction(PlayerInteractingScp330EventArgs ev)
-#endif
-#if EXILED
+#else
     private void OnInteraction(InteractingScp330EventArgs ev)
 #endif
     {
@@ -70,8 +66,7 @@ public class EventHandler
         
 #if LABAPI
         player.SendHint(hint, 4);
-#endif
-#if EXILED
+#else
         player.ShowHint(hint, 4);
 #endif
     }
