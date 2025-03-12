@@ -1,13 +1,6 @@
 ﻿namespace CandyUtilities;
 
-#if LABAPI
 using LabApi.Events.Arguments.PlayerEvents;
-using LabApi.Features.Wrappers;
-#else
-using Exiled.API.Features;
-using Exiled.Events.EventArgs.Scp330;
-#endif
-
 using InventorySystem.Items.Usables.Scp330;
 using UnityEngine;
 
@@ -18,27 +11,15 @@ public class EventHandler
     
     internal EventHandler()
     {
-#if LABAPI
         LabApi.Events.Handlers.PlayerEvents.InteractingScp330 += OnInteraction;
-#else
-        Exiled.Events.Handlers.Scp330.InteractingScp330 += OnInteraction;
-#endif
     }
 
     ~EventHandler()
     {
-#if LABAPI
         LabApi.Events.Handlers.PlayerEvents.InteractingScp330 -= OnInteraction;
-#else
-        Exiled.Events.Handlers.Scp330.InteractingScp330 -= OnInteraction;
-#endif
     }
     
-#if LABAPI
     private void OnInteraction(PlayerInteractingScp330EventArgs ev)
-#else
-    private void OnInteraction(InteractingScp330EventArgs ev)
-#endif
     {
         if (!ev.IsAllowed)
             return;
@@ -55,19 +36,8 @@ public class EventHandler
             : config.GlobalSeverLimit;
 
         ev.ShouldSever = ev.UsageCount >= maxCandies;
-
-        SendHint(ev.Player, ev.ShouldSever ? translation.SeveredText : pickupText);
-    }
-
-    private void SendHint(Player player, string hint)
-    {
-        if (string.IsNullOrEmpty(hint))
-            return;
         
-#if LABAPI
-        player.SendHint(hint, 4);
-#else
-        player.ShowHint(hint, 4);
-#endif
+        if (!string.IsNullOrEmpty(ev.ShouldSever ? translation.SeveredText : pickupText))
+            ev.Player.SendHint(ev.ShouldSever ? translation.SeveredText : pickupText, 4);
     }
 }
