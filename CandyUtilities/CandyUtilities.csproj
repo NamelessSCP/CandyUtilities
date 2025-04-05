@@ -6,23 +6,16 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>10</LangVersion>
-        <Configurations>Exiled;LabApi</Configurations>
+        <Configurations>Debug;Release</Configurations>
         <Platforms>AnyCPU</Platforms>
     </PropertyGroup>
     
     <ItemGroup>
+        <Reference Include="Assembly-CSharp" HintPath="$(SL_REFERENCES)\Assembly-CSharp.dll" />
         <Reference Include="UnityEngine" HintPath="$(SL_REFERENCES)\UnityEngine.dll" />
         <Reference Include="UnityEngine.CoreModule" HintPath="$(SL_REFERENCES)\UnityEngine.CoreModule.dll" />
         <Reference Include="Mirror" HintPath="$(SL_REFERENCES)\Mirror.dll" />
         <Reference Include="LabApi" HintPath="$(SL_REFERENCES)\LabApi.dll" />
-    </ItemGroup>
-
-    <ItemGroup Condition=" '$(Configuration)' == 'LabApi' ">
-        <Reference Include="Assembly-CSharp-Publicized" HintPath="$(SL_REFERENCES)\Assembly-CSharp-Publicized.dll" />
-    </ItemGroup>
-
-    <ItemGroup Condition=" '$(Configuration)' == 'Exiled' ">
-        <PackageReference Include="ExMod.Exiled" Version="9.5.0" />
     </ItemGroup>
 
 </Project>

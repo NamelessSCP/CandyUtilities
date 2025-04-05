@@ -1,20 +1,13 @@
 ﻿namespace CandyUtilities;
 
-#if EXILED
-using Exiled.API.Interfaces;
-#endif
-
 using InventorySystem.Items.Usables.Scp330;
 using System.ComponentModel;
 
-#if LABAPI
-public sealed class Translation
-#else
-public sealed class Translation : ITranslation
-#endif
+public sealed class Translation 
 {
     [Description("The text shown when picking up a candy, note %type% gets replaced with the type of candy")]
     public string PickupText { get; set; } = "You take a piece of %type% candy.";
+
     [Description("Dictionary of candies and the respective text to show based on them")]
     public Dictionary<CandyKindID, string> CandyText { get; set; } = new()
     {
@@ -26,6 +19,7 @@ public sealed class Translation : ITranslation
         { CandyKindID.Blue, "<color=#0000FF>Blue</color>" },
         { CandyKindID.Pink, "<color=#FFC0CB>Pink</color>" },
     };
+
     [Description("Text to be shown when hands are being severed")] 
     public string SeveredText { get; set; } = "Hippity hoppity, your hands are now my property";
 }
