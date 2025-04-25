@@ -18,6 +18,7 @@ public class EventHandler
     ~EventHandler()
     {
         LabApi.Events.Handlers.PlayerEvents.InteractingScp330 -= OnInteraction;
+        LabApi.Events.Handlers.PlayerEvents.InteractedScp330 -= OnInteracted;
     }
     
     private void OnInteraction(PlayerInteractingScp330EventArgs ev)

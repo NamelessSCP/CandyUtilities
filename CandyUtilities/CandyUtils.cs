@@ -5,13 +5,13 @@ using LabApi.Loader;
 
 public class CandyUtil : Plugin
 {
-    private EventHandler eventHandler { get; set; } = null!;
+    private EventHandler? _eventHandler;
 
     public static CandyUtil Instance { get; private set; } = null!;
 
     public override string Name => "Candy Utilities";
     public override string Author => "@misfiy";
-    public override Version Version => new(1, 0, 10);
+    public override Version Version => new(2, 0, 0);
 
     public override string Description => "Utils for SCP-330";
     public override Version RequiredApiVersion => new(LabApi.Features.LabApiProperties.CompiledVersion);
@@ -22,7 +22,7 @@ public class CandyUtil : Plugin
     public override void Enable()
     {
         Instance = this;
-        eventHandler = new EventHandler();
+        _eventHandler = new EventHandler();
     }
 
     public override void LoadConfigs()
@@ -37,7 +37,7 @@ public class CandyUtil : Plugin
 
     public override void Disable()
     {
-        eventHandler = null!;
+        _eventHandler = null;
         Instance = null!;
     }
 }
