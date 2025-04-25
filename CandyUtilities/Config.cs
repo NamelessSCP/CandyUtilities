@@ -1,13 +1,10 @@
-﻿namespace CandyUtilities_EXILED;
+﻿namespace CandyUtilities;
 
-using Exiled.API.Interfaces;
 using PlayerRoles;
 using System.ComponentModel;
 
-public sealed class Config : IConfig
+public sealed class Config
 {
-    public bool IsEnabled { get; set; } = true;
-    public bool Debug { get; set; } = false;
     [Description("Chance of getting pink candy from bowl")]
     public ushort PinkChance { get; set; } = 3;
     [Description("Set how many candies everyone can take")]
