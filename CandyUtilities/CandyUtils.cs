@@ -14,17 +14,17 @@ public class CandyUtil : Plugin
     public override Version Version => new(1, 0, 10);
 
     public override string Description => "Utils for SCP-330";
-    public override Version RequiredApiVersion => new(1, 0, 0);
+    public override Version RequiredApiVersion => new(LabApi.Features.LabApiProperties.CompiledVersion);
 
     public Config Config { get; private set; } = null!;
     public Translation Translation { get; private set; } = null!;
 
     public override void Enable()
     {
-
         Instance = this;
         eventHandler = new EventHandler();
     }
+
     public override void LoadConfigs()
     {
         Config = this.TryLoadConfig("config.yml", out Config? config)

@@ -6,12 +6,13 @@ using UnityEngine;
 
 public class EventHandler
 {
-    private static Config config => CandyUtil.Instance.Config;
-    private static Translation translation => CandyUtil.Instance.Translation;
+    private static Config _config => CandyUtil.Instance.Config;
+    private static Translation _translation => CandyUtil.Instance.Translation;
     
     internal EventHandler()
     {
         LabApi.Events.Handlers.PlayerEvents.InteractingScp330 += OnInteraction;
+        LabApi.Events.Handlers.PlayerEvents.InteractedScp330 += OnInteracted;
     }
 
     ~EventHandler()
@@ -24,12 +25,12 @@ public class EventHandler
         if (!ev.IsAllowed)
             return;
 
-        if (Random.Range(1, 100) <= config.PinkChance)
+        if (Random.Range(1, 100) <= _config.PinkChance)
             ev.CandyType = CandyKindID.Pink;
 
-        int maxCandies = config.SeverCounts.TryGetValue(ev.Player.Role, out int count)
+        int maxCandies = _config.SeverCounts.TryGetValue(ev.Player.Role, out int count)
             ? count
-            : config.GlobalSeverLimit;
+            : _config.GlobalSeverLimit;
 
         AdjustSeverValues(ev, maxCandies);
     }
@@ -37,11 +38,11 @@ public class EventHandler
     private void OnInteracted(PlayerInteractedScp330EventArgs ev)
     {
         if (ev.AllowPunishment) 
-            ev.Player.SendHint(translation.SeveredText, 4);
+            ev.Player.SendHint(_translation.SeveredText, 4);
         else
         {
-            string pickupText = translation.CandyText.TryGetValue(ev.CandyType, out string candy)
-                ? translation.PickupText.Replace("%type%", candy)
+            string pickupText = _translation.CandyText.TryGetValue(ev.CandyType, out string candy)
+                ? _translation.PickupText.Replace("%type%", candy)
                 : string.Empty;
             if (!string.IsNullOrEmpty(pickupText))
                 ev.Player.SendHint(pickupText, 4);
