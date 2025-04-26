@@ -1,61 +1,50 @@
-﻿namespace CandyUtilities;
-
-using LabApi.Events.Arguments.PlayerEvents;
+﻿using Exiled.API.Features;
+using Exiled.Events.EventArgs.Scp330;
 using InventorySystem.Items.Usables.Scp330;
-using UnityEngine;
+using Random = UnityEngine.Random;
+
+namespace CandyUtilities;
 
 public class EventHandler
 {
-    private static Config _config => CandyUtil.Instance.Config;
-    private static Translation _translation => CandyUtil.Instance.Translation;
+    private static Config config => CandyUtil.Instance.Config;
+    private static Translation translation => CandyUtil.Instance.Translation;
     
-    internal EventHandler()
+    public EventHandler()
     {
-        LabApi.Events.Handlers.PlayerEvents.InteractingScp330 += OnInteraction;
-        LabApi.Events.Handlers.PlayerEvents.InteractedScp330 += OnInteracted;
+        Exiled.Events.Handlers.Scp330.InteractingScp330 += OnInteraction;
     }
 
     ~EventHandler()
     {
-        LabApi.Events.Handlers.PlayerEvents.InteractingScp330 -= OnInteraction;
-        LabApi.Events.Handlers.PlayerEvents.InteractedScp330 -= OnInteracted;
+        Exiled.Events.Handlers.Scp330.InteractingScp330 -= OnInteraction;
     }
     
-    private void OnInteraction(PlayerInteractingScp330EventArgs ev)
+    public void OnInteraction(InteractingScp330EventArgs ev)
     {
         if (!ev.IsAllowed)
             return;
 
-        if (Random.Range(1, 100) <= _config.PinkChance)
-            ev.CandyType = CandyKindID.Pink;
-
-        int maxCandies = _config.SeverCounts.TryGetValue(ev.Player.Role, out int count)
-            ? count
-            : _config.GlobalSeverLimit;
-
-        AdjustSeverValues(ev, maxCandies);
-    }
-
-    private void OnInteracted(PlayerInteractedScp330EventArgs ev)
-    {
-        if (ev.AllowPunishment) 
-            ev.Player.SendHint(_translation.SeveredText, 4);
-        else
+        if (Random.Range(1, 100) <= config.PinkChance)
         {
-            string pickupText = _translation.CandyText.TryGetValue(ev.CandyType, out string candy)
-                ? _translation.PickupText.Replace("%type%", candy)
-                : string.Empty;
-            if (!string.IsNullOrEmpty(pickupText))
-                ev.Player.SendHint(pickupText, 4);
+            ev.Candy = CandyKindID.Pink;
+            Log.Debug("Pink candy has been selected!");
         }
-    }
+        
+        string pickupText = translation.CandyText.TryGetValue(ev.Candy, out string? candy)
+            ? translation.PickupText.Replace("%type%", candy)
+            : string.Empty;
 
-    private void AdjustSeverValues(PlayerInteractingScp330EventArgs ev, int maxCandies)
-    {
-        bool shouldPunish = ev.Uses >= maxCandies;
-        ev.AllowPunishment = shouldPunish;
+        int maxCandies = config.SeverCounts.TryGetValue(ev.Player.Role.Type, out int count)
+            ? count
+            : config.GlobalSeverLimit;
 
-        if (shouldPunish)
-            ev.Uses = 2;
+        ev.ShouldSever = ev.UsageCount >= maxCandies;
+        Log.Debug($"Usage ({ev.UsageCount}/{maxCandies}) - ShouldSever ({ev.ShouldSever})");
+		
+        if (ev.ShouldSever && !translation.SeveredText.IsEmpty())
+            ev.Player.ShowHint(translation.SeveredText, 4);
+        else if (!pickupText.IsEmpty())
+            ev.Player.ShowHint(pickupText, 4);
     }
 }

@@ -1,43 +1,32 @@
-﻿namespace CandyUtilities;
+﻿using Exiled.API.Features;
 
-using LabApi.Loader.Features.Plugins;
-using LabApi.Loader;
+namespace CandyUtilities;
 
-public class CandyUtil : Plugin
+public class CandyUtil : Plugin<Config, Translation>
 {
-    private EventHandler? _eventHandler;
+    public override string Name => "Candy Utilities";
+    public override string Prefix => "CandyUtils";
+    public override string Author => "@misfiy & RomzyyTV";
+    public override Version Version => new(1, 0, 10);
+    public override Version RequiredExiledVersion => new(9, 0, 0);
 
     public static CandyUtil Instance { get; private set; } = null!;
 
-    public override string Name => "Candy Utilities";
-    public override string Author => "@misfiy";
-    public override Version Version => new(2, 0, 0);
-
-    public override string Description => "Utils for SCP-330";
-    public override Version RequiredApiVersion => new(LabApi.Features.LabApiProperties.CompiledVersion);
-
-    public Config Config { get; private set; } = null!;
-    public Translation Translation { get; private set; } = null!;
-
-    public override void Enable()
+    private EventHandler eventHandler { get; set;  } = null!;
+    
+    public override void OnEnabled()
     {
         Instance = this;
-        _eventHandler = new EventHandler();
+        eventHandler = new();
+
+        base.OnEnabled();
     }
 
-    public override void LoadConfigs()
+    public override void OnDisabled()
     {
-        Config = this.TryLoadConfig("config.yml", out Config? config)
-            ? config
-            : new Config();
-        Translation = this.TryLoadConfig("translation.yml", out Translation? translation)
-            ? translation
-            : new Translation();
-    }
-
-    public override void Disable()
-    {
-        _eventHandler = null;
+        eventHandler = null!;
+          
         Instance = null!;
+        base.OnDisabled();
     }
 }

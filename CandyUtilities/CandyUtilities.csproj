@@ -11,11 +11,13 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <Reference Include="Assembly-CSharp" HintPath="$(SL_REFERENCES)\Assembly-CSharp.dll" />
         <Reference Include="UnityEngine" HintPath="$(SL_REFERENCES)\UnityEngine.dll" />
         <Reference Include="UnityEngine.CoreModule" HintPath="$(SL_REFERENCES)\UnityEngine.CoreModule.dll" />
         <Reference Include="Mirror" HintPath="$(SL_REFERENCES)\Mirror.dll" />
-        <Reference Include="LabApi" HintPath="$(SL_REFERENCES)\LabApi.dll" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="ExMod.Exiled" Version="9.5.2" />
     </ItemGroup>
 
 </Project>
