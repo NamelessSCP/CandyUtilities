@@ -1,7 +1,8 @@
 ﻿namespace CandyUtilities;
 
-using LabApi.Loader.Features.Plugins;
+using LabApi.Features;
 using LabApi.Loader;
+using LabApi.Loader.Features.Plugins;
 
 public class CandyUtil : Plugin
 {
@@ -11,10 +12,9 @@ public class CandyUtil : Plugin
 
     public override string Name => "Candy Utilities";
     public override string Author => "@misfiy";
-    public override Version Version => new(2, 0, 0);
-
+    public override Version Version => new(2, 0, 1);
     public override string Description => "Utils for SCP-330";
-    public override Version RequiredApiVersion => new(LabApi.Features.LabApiProperties.CompiledVersion);
+    public override Version RequiredApiVersion => LabApiProperties.CurrentVersion;
 
     public Config Config { get; private set; } = null!;
     public Translation Translation { get; private set; } = null!;

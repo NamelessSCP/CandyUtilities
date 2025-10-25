@@ -18,6 +18,12 @@ public sealed class Translation
         { CandyKindID.Green, "<color=#008000>Green</color>" },
         { CandyKindID.Blue, "<color=#0000FF>Blue</color>" },
         { CandyKindID.Pink, "<color=#FFC0CB>Pink</color>" },
+        { CandyKindID.Orange, "<color=#FFA500>Orange</color>" },
+        { CandyKindID.White, "<color=#FFFFFF>White</color>" },
+        { CandyKindID.Gray, "<color=#808080>Gray</color>" },
+        { CandyKindID.Black, "<color=#000000>Black</color>" },
+        { CandyKindID.Brown, "<color=#FFA500>Brown</color>" },
+        { CandyKindID.Evil, "<color=#FF0000>Ev</color><color=000000>il</color>" },
     };
 
     [Description("Text to be shown when hands are being severed")] 

@@ -33,21 +33,26 @@ public class EventHandler
             ? count
             : _config.GlobalSeverLimit;
 
+        if (maxCandies == Config.SeverLimitDefault)
+            return;
+
         AdjustSeverValues(ev, maxCandies);
     }
 
     private void OnInteracted(PlayerInteractedScp330EventArgs ev)
     {
-        if (ev.AllowPunishment) 
-            ev.Player.SendHint(_translation.SeveredText, 4);
-        else
+        if (ev.AllowPunishment)
         {
-            string pickupText = _translation.CandyText.TryGetValue(ev.CandyType, out string candy)
-                ? _translation.PickupText.Replace("%type%", candy)
-                : string.Empty;
-            if (!string.IsNullOrEmpty(pickupText))
-                ev.Player.SendHint(pickupText, 4);
+            if (!string.IsNullOrEmpty(_translation.SeveredText))
+                ev.Player.SendHint(_translation.SeveredText, 4);
+            return;
         }
+
+        string pickupText = _translation.CandyText.TryGetValue(ev.CandyType, out string candy)
+            ? _translation.PickupText.Replace("%type%", candy)
+            : string.Empty;
+        if (!string.IsNullOrEmpty(pickupText))
+            ev.Player.SendHint(pickupText, 4);
     }
 
     private void AdjustSeverValues(PlayerInteractingScp330EventArgs ev, int maxCandies)
