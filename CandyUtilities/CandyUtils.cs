@@ -11,8 +11,8 @@ public class CandyUtil : Plugin
     public static CandyUtil Instance { get; private set; } = null!;
 
     public override string Name => "Candy Utilities";
-    public override string Author => "@misfiy";
-    public override Version Version => new(2, 0, 1);
+    public override string Author => "@obvEve";
+    public override Version Version => new(2, 1, 0);
     public override string Description => "Utils for SCP-330";
     public override Version RequiredApiVersion => LabApiProperties.CurrentVersion;
 
@@ -30,6 +30,7 @@ public class CandyUtil : Plugin
         Config = this.TryLoadConfig("config.yml", out Config? config)
             ? config
             : new Config();
+
         Translation = this.TryLoadConfig("translation.yml", out Translation? translation)
             ? translation
             : new Translation();

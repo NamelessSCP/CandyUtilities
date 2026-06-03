@@ -1,4 +1,6 @@
-﻿namespace CandyUtilities;
+﻿using LabApi.Features.Wrappers;
+
+namespace CandyUtilities;
 
 using LabApi.Events.Arguments.PlayerEvents;
 using InventorySystem.Items.Usables.Scp330;
@@ -43,24 +45,38 @@ public class EventHandler
     {
         if (ev.AllowPunishment)
         {
-            if (!string.IsNullOrEmpty(_translation.SeveredText))
-                ev.Player.SendHint(_translation.SeveredText, 4);
+            ValidatedHintSend(ev.Player, _translation.SeveredText, 4);
             return;
         }
 
         string pickupText = _translation.CandyText.TryGetValue(ev.CandyType, out string candy)
             ? _translation.PickupText.Replace("%type%", candy)
             : string.Empty;
-        if (!string.IsNullOrEmpty(pickupText))
-            ev.Player.SendHint(pickupText, 4);
+
+        ValidatedHintSend(ev.Player, pickupText, 4);
     }
 
     private void AdjustSeverValues(PlayerInteractingScp330EventArgs ev, int maxCandies)
     {
+        if (maxCandies == Config.SeverLimitInfinite)
+        {
+            ev.AllowPunishment = false; // dont allow sever
+            ev.Uses = 0; // don't let base-game override the above value
+            return;
+        }
+
         bool shouldPunish = ev.Uses >= maxCandies;
-        ev.AllowPunishment = shouldPunish;
+        ev.AllowPunishment = shouldPunish; // let base-game do the punishment
 
         if (shouldPunish)
-            ev.Uses = 2;
+            ev.Uses = 2; // force base-game to allow the punishment
+    }
+
+    private void ValidatedHintSend(Player player, string text, float duration)
+    {
+        if (string.IsNullOrEmpty(text))
+            return;
+        
+        player.SendHint(text, duration);
     }
 }
