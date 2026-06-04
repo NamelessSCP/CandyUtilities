@@ -12,7 +12,7 @@ public class CandyUtil : Plugin
 
     public override string Name => "Candy Utilities";
     public override string Author => "@obvEve";
-    public override Version Version => new(2, 1, 0);
+    public override Version Version => new(2, 1, 1);
     public override string Description => "Utils for SCP-330";
     public override Version RequiredApiVersion => LabApiProperties.CurrentVersion;
 

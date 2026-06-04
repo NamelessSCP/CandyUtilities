@@ -1,4 +1,6 @@
-﻿using LabApi.Features.Wrappers;
+﻿using CustomPlayerEffects;
+using Interactables.Interobjects;
+using LabApi.Features.Wrappers;
 
 namespace CandyUtilities;
 
@@ -43,7 +45,8 @@ public class EventHandler
 
     private void OnInteracted(PlayerInteractedScp330EventArgs ev)
     {
-        if (ev.AllowPunishment)
+        // using ev.AllowPunishment only tells if player has god-mode enabled
+        if (ev.Player.HasEffect<SeveredHands>())
         {
             ValidatedHintSend(ev.Player, _translation.SeveredText, 4);
             return;
